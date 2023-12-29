@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Título da página</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+</head>
+<body>
+    <script>
+        // Crie um novo documento JSPDF com orientação paisagem
+const doc = new jsPDF({
+  orientation: "landscape",
+  unit: "px",
+  format: "a4"
+});
+
+// Define a margem dourada
+const margin = {
+  top: 100, // topo
+  bottom: 100, // base
+  left: 240, // esquerda
+  right: 240 // direita
+};
+
+// Insira o logo do certificado no canto superior esquerdo
+const logoImgUrl = "path_to_logo_image";
+const logoWidth = 150;
+const logoHeight = 100;
+doc.addImage(logoImgUrl, "PNG", margin.left, margin.top, logoWidth, logoHeight);
+
+// Defina o estilo do texto
+doc.setFontSize(18);
+doc.setFont("times", "bold");
+
+// Insira os textos no certificado
+doc.text("CERTIFICADO", margin.left, margin.top + 150);
+doc.setFontSize(14);
+doc.setFont("times", "normal");
+
+const studentName = "João da Silva";
+const courseDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit nisi. Sed cursus sem ut lectus scelerisque tincidunt. Phasellus pellentesque sollicitudin elit, sed tristique enim hendrerit eget. Nulla pulvinar dolor non dui commodo lacinia. Suspendisse lorem ex, placerat a aliquam vel, tristique et massa. Donec sit amet turpis id urna gravida sollicitudin. Donec imperdiet accumsan nunc, ac tincidunt libero sollicitudin sed. Curabitur finibus diam in mi dignissim, a eleifend arcu tristique.";
+const issuanceDate = "01/01/2022";
+const courseDuration = "4 semanas";
+
+doc.text("Certificamos que", margin.left, margin.top + 200);
+doc.text(studentName, margin.left, margin.top + 230);
+doc.text(courseDescription, margin.left, margin.top + 260);
+doc.text("Data de emissão: " + issuanceDate, margin.left, margin.top + 400);
+doc.text("Duração do curso: " + courseDuration, margin.left, margin.top + 430);
+doc.text("Assinatura", margin.left, margin.top + 500);
+
+// Salve e faça o download do PDF
+doc.save("certificado.pdf");
+
+    </script>
+</body>
+</html> 
