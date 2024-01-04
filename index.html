@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Background Image com jsPDF</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Certificado PDF</title>
+    <!-- Certifique-se de incluir as bibliotecas jsPDF e html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
-<div id="background" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;">
-  <img src="certificad.png" alt="Background Image" style="width: 100%; height: 100%; object-fit: cover;">
-</div>
-
-<button onclick="gerarPDF()">Gerar yyyyyyyhF</button>
-
 <script>
-function gerarPDF() {
-  // Criar uma nova instância do jsPDF
-  const pdf = new jsPDF();
+    // Seu código JavaScript aqui
 
-  // Adicionar conteúdo ao PDF
-  pdf.text('Seu conteúdo aqui...', 10, 10);
+    // Criar um novo documento PDF
+    var doc = new jsPDF();
 
-  // Salvar ou exibir o PDF
-  pdf.save('documento.pdf');
-}
+    // Adicionar o elemento do certificado ao documento PDF
+    var certificado = document.createElement('div');
+    certificado.style.width = '297mm'; // Largura do certificado
+    certificado.style.height = '210mm'; // Altura do certificado
+    certificado.style.backgroundImage = 'url(certificad.png)'; // URL da imagem de plano de fundo
+    certificado.style.backgroundSize = 'cover'; // Redimensionar imagem de plano de fundo para cobrir o elemento
+    certificado.style.backgroundRepeat = 'no-repeat'; // Evitar repetição da imagem de plano de fundo
+    certificado.style.backgroundPosition = 'center'; // Centralizar imagem de plano de fundo
+
+    // Adicionar um tempo de espera de 2 segundos antes de chamar html2canvas
+    setTimeout(function() {
+        // Converter o elemento do certificado em uma imagem
+        html2canvas(certificado).then(function(canvas) {
+            var imgData = canvas.toDataURL('image/png');
+
+            // Adicionar a imagem do certificado ao documento PDF
+            doc.addImage(imgData, 'PNG', 10, 10, 187, 131); // Adapte as coordenadas e dimensões conforme necessário
+
+            // Salvar ou exibir o documento PDF
+            doc.save('ceryyyyyyyy.pdf'); // Salvar o PDF com um nome específico
+        });
+    }, 2000); // 2000 milissegundos = 2 segundos
 </script>
 
 </body>
