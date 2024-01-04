@@ -8,16 +8,16 @@
 </head>
 <body>
 
-<button onclick="gerarPDF()">Gerar PDF</button>
+<div id="background" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;">
+  <img src="certificad.png" alt="Background Image" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+
+<button onclick="gerarPDF()">Gerar yyyyyyyhF</button>
 
 <script>
 function gerarPDF() {
   // Criar uma nova instância do jsPDF
   const pdf = new jsPDF();
-
-  // Adicionar imagem de plano de fundo
-  const imgData = 'certificad.png'; // Substitua com o caminho da sua imagem
-  pdf.addImage(imgData, 'JPEG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
 
   // Adicionar conteúdo ao PDF
   pdf.text('Seu conteúdo aqui...', 10, 10);
