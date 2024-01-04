@@ -15,6 +15,22 @@ const doc = new jsPDF({
   format: "a4"
 });
 
+
+// Carregar a imagem como um base64-encoded string
+var imgData = 'certificad.png';
+
+// Definir o background image do documento
+doc.setDrawColor(0); 
+doc.setFillColor(255, 255, 255);
+doc.rect(0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight(), 'F');
+doc.addImage(imgData, 'JPEG', 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+
+
+
+
+
+        
+
 // Define a margem dourada
 const margin = {
   top: 100, // topo
@@ -51,7 +67,7 @@ doc.text("Duração do curso: " + courseDuration, margin.left, margin.top + 430)
 doc.text("Assinatura", margin.left, margin.top + 500);
 
 // Salve e faça o download do PDF
-doc.save("certificado.pdf");
+doc.save("certificamos.pdf");
 
     </script>
 </body>
